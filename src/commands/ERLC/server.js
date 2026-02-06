@@ -3,7 +3,7 @@ require('dotenv').config();
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('serverinfo')
+    .setName('gameinfo')
     .setDescription('View the current server status'),
     async execute(interaction, client) {
         fetch (`https://api.policeroleplay.community/v1/server`, {
