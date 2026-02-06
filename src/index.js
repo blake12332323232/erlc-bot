@@ -2,6 +2,15 @@ const { Client, GatewayIntentBits, EmbedBuilder, WebhookClient, Events, Permissi
 const fs = require('fs');
 const { setTimeout } = require('timers/promises');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] }); 
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot is running");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Webserver running on port ${PORT}`));
 
 client.commands = new Collection();
 
@@ -47,7 +56,7 @@ function editS () {
         )
 	.setColor(embedcol);
     
- webhookClient.editMessage('ENTER MESSAGE ID', {
+ webhookClient.editMessage('1464363093705625642', {
     //content: response.CurrentPlayers.toString() + ' out of ' + response.MaxPlayers.toString() + ' max players',
     embeds: [embed],
  
@@ -69,5 +78,6 @@ setInterval(editS, 120000);
     client.handleCommands(commandFolders, "./src/commands");
     client.login(process.env.token)
 })();
+
 
 
